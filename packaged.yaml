@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-app
+
+  Sample SAM Template for sam-app
+
+  '
+Globals:
+  Function:
+    Timeout: 20
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: luis-lambda
+    Description: hello world
+    Author: luis
+    SpdxLicenseId: Apache-2.0
+    LicenseUrl: s3://bucketluislambda/570a0bda13ff76e30e20e71be0b972e8
+    ReadmeUrl: s3://bucketluislambda/4cdae9e87f8553a036a0eac8576b64c3
+    Labels:
+    - tests
+    HomePageUrl: https://github.com/ltrevino/lambdaDeploy
+    SemanticVersion: '0.0.1'
+    SourceCodeUrl: https://github.com/ltrevino/lambdaDeploy
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://bucketluislambda/99e415b044534515b1c2dabfdb6c4b74
+      Handler: helloworld.App::handleRequest
+      Runtime: java8
+      MemorySize: 512
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
+Outputs:
+  HelloWorldApi:
+    Description: API Gateway endpoint URL for Prod stage for Hello World function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+  HelloWorldFunction:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunction
+      - Arn
+  HelloWorldFunctionIamRole:
+    Description: Implicit IAM Role created for Hello World function
+    Value:
+      Fn::GetAtt:
+      - HelloWorldFunctionRole
+      - Arn
