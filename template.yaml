@@ -15,7 +15,7 @@ Metadata:
   AWS::ServerlessRepo::Application:
     Name: luis-lambda
     Description: hello world
-    Author: luis
+    Author: luisx
     SpdxLicenseId: Apache-2.0
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
