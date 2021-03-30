@@ -8,4 +8,4 @@ phases:
       - sam package --template-file template.yaml --s3-bucket bucketluislambda --output-template-file packaged-template.yaml
 artifacts:
   files:
-    - packaged-template.yml
+    - packaged-template.yaml
